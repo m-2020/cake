@@ -38,5 +38,7 @@ delete '/carts/:id' => 'customers/carts#destroy_all'
 get '/orders/thanks' => 'customers/orders#thanks'
 get '/orders/judgement' => 'customers/orders#judgement'
 
+get '/admins/orders/top' => 'admins/orders#top'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
