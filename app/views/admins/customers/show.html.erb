@@ -1,1 +1,37 @@
-会員詳細画面を表示する（うんち！！）
+
+<div class='container'>
+<h1>会員詳細画面</h1>
+
+<table>
+	<tbody>
+		<tr>
+			<td>顧客ID</td>
+			<td><%= @customer.id %></td>
+		</tr>
+		<tr>
+			<td>氏名</td>
+			<td><%= @customer.last_name %></td>
+		</tr>
+		<tr>
+			<td>フリガナ</td>
+			<td><%= @customer.last_name_kana %></td>
+		</tr>
+		<tr>
+			<td>郵便番号</td>
+			<td><%= @customer.post_code %></td>
+		</tr>
+		<tr>
+			<td>住所</td>
+			<td><%= @customer.address %></td>
+		</tr>
+		<tr>
+			<td>電話番号</td>
+			<td><%= @customer.phone_number %></td>
+		</tr>
+		<tr>
+			<td>メールアドレス</td>
+			<td><%= @customer.email %></td>
+		</tr>
+	</tbody>
+</table>
+</div>
