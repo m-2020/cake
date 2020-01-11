@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_01_11_073954) do
+
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -54,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_01_11_073954) do
     t.string "post_code"
     t.string "address"
     t.string "phone_number"
-    t.boolean "entry_status"
+    t.boolean "entry_status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
