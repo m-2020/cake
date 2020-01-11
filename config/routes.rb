@@ -17,7 +17,7 @@ patch '/customers' => 'customers/customers#change'
 put '/customers' => 'customers/customers#change'
 get '/customers/withdraw' => 'customers/customers#withdraw'
 
-delete '/carts/:id' => 'customers/carts#destroy_all'
+delete '/cart_produsts/:id' => 'customers/cart_products#destroy_all'
 
 get '/orders/thanks' => 'customers/orders#thanks'
 get '/orders/judgement' => 'customers/orders#judgement'
@@ -35,7 +35,7 @@ scope module: :customers do
 	resource :customers,only: [:show, :edit, :update]
 	resources :products,only: [:index, :show]
 	resources :addresses,only: [:index, :new, :create, :edit, :update, :destroy]
-	resources :carts,only: [:index, :create, :update, :destroy]
+	resources :cart_products,only: [:index, :create, :update, :destroy]
 	resources :orders,only: [:index, :new, :create, :show]
 end
 
