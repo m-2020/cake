@@ -22,13 +22,16 @@
 				<th></th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td>ケーキ</td>
-				<td>有効</td>
-				<td>編集する</td>
-			</tr>
-		</tbody>
+
+		<% @genres.each do |genre| %>
+			<tbody>
+				<tr>
+					<td><%= @genre.name %></td>
+					<td>有効</td>
+					<td>編集する</td>
+				</tr>
+			</tbody>
+		<% end %>
 		</table>
 	</div>
 </div>
