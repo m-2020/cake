@@ -20,7 +20,7 @@ class Customers::AddressesController < ApplicationController
 
 	def edit
 		@address = Address.find(params[:id])
-        # if @address.customer.id != current_customer.id
+        # if @address.customer_id != current_customer_id
         # 	redirect_to addresses_path
         # end
 	end

@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+		<h2><strong>商品 詳細画面</strong></h2>
+
+		<h4>商品画像</h4>
+
+		<h4>商品名</h4>
+		<%= @product.name %>
+
+		<h4>商品説明</h4>
+		<%= @product.text %>
+
+		<h4>ジャンル</h4>
+		<%= @product.genre.name %>
+
+		<h4>税込価格</h4>
+		<%= @product.price %>
+
+		<h4>販売ステータス</h4>
+		<%= @product.sale_status %>
+
+		<br>
+		<br>
+
+		<%= link_to '編集する', edit_admins_product_path(@product.id) %>
+
+	</div>
+</div>
