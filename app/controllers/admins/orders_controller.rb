@@ -4,18 +4,22 @@ class Admins::OrdersController < ApplicationController
 		@orders = Order.count
 
 	end
-  
-	def index
 
+	def index
+		@orders = Oeder.all
 	end
 
 	def show
-
+		@order = Order.find(params[:id])
 	end
 
 	def update
-    
-  end
+	
+	end
 
+	private
+	def order_params
+		params.require(:order).permit(:created_at)
+	end
 
 end

@@ -10,7 +10,7 @@ devise_for :customers, controllers: {
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
 }
-  
+
 root 'customers/products#top'
 
 patch '/customers' => 'customers/customers#change'
