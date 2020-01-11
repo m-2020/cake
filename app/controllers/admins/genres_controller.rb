@@ -13,13 +13,12 @@ class Admins::GenresController < ApplicationController
 
 	def edit
 		@genre = Genre.find(params[:id])
-		render :index
 	end
 
 	def update
 		@genre = Genre.find(params[:id])
 		@genre.update(genre_params)
-		render :index
+		redirect_to admins_genres_path
 	end
 
 	private
