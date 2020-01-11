@@ -17,7 +17,9 @@ class Admins::GenresController < ApplicationController
 	end
 
 	def update
-
+		@genre = Genre.find(params[:id])
+		@genre.update(genre_params)
+		render :index
 	end
 
 	private
