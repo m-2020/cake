@@ -13,6 +13,7 @@
 			</tr>
 		</thead>
 		<tbody>
+			<%= @products.each do |product| %>
 			<tr>
 				<td>1</td>
 				<td>洋梨チーズタルト</td>
@@ -20,6 +21,7 @@
 				<td>ケーキ</td>
 				<td>販売中</td>
 			</tr>
+			<% end %>
 		</tbody>
 		</table>
 	</div>
