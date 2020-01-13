@@ -1,7 +1,17 @@
 <h2>配送先一覧/登録</h2>
 
+<% if @address.errors.any? %>
+    <h4>入力した内容にエラーが<%= @address.errors.count %>件あります</h4>
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+<% end %>
+
 <!-- ここから新規登録部分　new -->
 	<%= form_for(@address) do |f| %>
+
 
 	  <p>郵便番号</p>
 	    <%= f.text_field :post_code %>
@@ -18,7 +28,6 @@
 
 
 <!-- ここから一覧部分　index -->
-
     <table>
       <thead>
         <tr>
@@ -50,6 +59,4 @@
         <% end %>
       </tbody>
     </table>
-
-
 <!-- ここまで一覧部分　index -->

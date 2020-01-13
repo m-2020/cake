@@ -1,5 +1,14 @@
 <h1>配送先編集</h1>
 
+<% if @address.errors.any? %>
+    <h4>入力した内容にエラーが<%= @address.errors.count %>件あります</h4>
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+<% end %>
+
 	<%= form_for(@address) do |f| %>
 
 	  <p>郵便番号</p>

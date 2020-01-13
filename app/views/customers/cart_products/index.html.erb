@@ -1,6 +1,6 @@
 カート一覧
 
-<h2>ショッピングカート</h2>
+<h3>ショッピングカート</h3>
 <botton type="botton">カートを空にする</botton>
 
 <!-- ここからカート一覧表示index部分 -->
@@ -20,10 +20,10 @@
       <tbody>
         <% @cart_products.each do |cart_product| %>
           <tr>
-            <td><%= cart_product.image %></td>
+            <td><%= cart_product.attachment_field :image %></td>
             <td><%= cart_product.name %></td>
             <td><%= cart_product.price %></td>
-            <td><%= cart_product.text_field :quantity %></td>
+            <td><%= cart_product.quantity %></td>
             <td>
 				<botton type="botton">
 					<%= link_to '変更', cart_products_path(id: cart_product.id) %>
@@ -39,9 +39,11 @@
         <% end %>
       </tbody>
     </table>
+
+
 <!-- ここまでカート一覧表示index部分 -->
 
-<botton type="botton"><%= link_to '買い物を続ける', products_path %></botton>
+<botton type="botton"><%= link_to '買い物を続ける', root_path %></botton>
 <botton type="botton">再計算</botton>
 
 <!-- ここから合計金額表示部分 -->
