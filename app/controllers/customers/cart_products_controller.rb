@@ -20,9 +20,15 @@ class Customers::CartProductsController < ApplicationController
 	end
 
 	def destroy
+		cart_product = Cart_product.find(params[:id])
+    	cart_product.destroy
+    	redirect_to cart_products_path
 	end
 
 	def destroy_all
+		cart_product = Cart_product.find(params[:id])
+    	cart_product.destroy_all
+    	redirect_to cart_products_path
 	end
 
 
