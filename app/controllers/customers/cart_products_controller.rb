@@ -1,6 +1,10 @@
 class Customers::CartProductsController < ApplicationController
+
+	before_action :authenticate_customer!
+
 	def index
 		@cart_products = CartProduct.all
+		@product = Product.new
 	end
 
 	def create
@@ -20,6 +24,7 @@ class Customers::CartProductsController < ApplicationController
 
 	def destroy_all
 	end
+
 
 	private
 	def cart_product_params

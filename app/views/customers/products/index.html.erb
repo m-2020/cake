@@ -1,10 +1,17 @@
-<h2>商品一覧</h2>
+<h2>商品一覧画面</h2>
 
 <!-- ここからジャンル検索リンク一覧部分 -->
+<h3>ジャンル検索</h3>
+
+<% @genres.each do |genre| %>
+	<%= genre.name %><br>
+<% end %>
 <!-- ここまでジャンル検索リンク一覧部分 -->
 
 
 <!-- ここから商品一覧部分 -->
+<h3>商品一覧</h3>
+
 <% @products.each do |product| %>
     <p>イメージ画像</p><%= product.image %>
     <p>商品名</p><%= product.name %>

@@ -11,35 +11,64 @@
 
   <body>
 
-    <div class="container">
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">ながのCAKE</a>
+    
+      <div class="container">
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">ながのCAKE</a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <%=link_to "商品一覧",admins_products_path %>
-            </li>
-            <li class="nav-item">
-              <%=link_to "会員一覧",admins_customers_path %>
-            </li>
-            <li class="nav-item dropdown">
-              <%=link_to "注文履歴一覧",admins_orders_path %>
-            </li>
-            <li class="nav-item">
-              <%=link_to "ジャンル管理",admins_genres_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, :class => "nav-link disabled" %>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
-    </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <% if admin_signed_in? %>
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <%=link_to "商品一覧",admins_products_path %>
+                </li>
+                <li class="nav-item">
+                  <%=link_to "会員一覧",admins_customers_path %>
+                </li>
+                <li class="nav-item dropdown">
+                  <%=link_to "注文履歴一覧",admins_orders_path %>
+                </li>
+                <li class="nav-item">
+                  <%=link_to "ジャンル管理",admins_genres_path %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, :class => "nav-link disabled" %>
+                </li>
+              </ul>
+            <% elsif customer_signed_in? %>
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <%=link_to "カート",cart_products_path %>
+                </li>
+                <li class="nav-item active">
+                  <%=link_to "MyPage", "/customers" %>
+                </li>
+                <li class="nav-item active">
+                  <%=link_to "about", "#" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "log out", destroy_customer_session_path, method: :delete, :class => "nav-link disabled" %>
+                </li>
+              </ul>
+            <% else %>
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <%=link_to "about", "#" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "log in", destroy_customer_session_path, method: :delete, :class => "nav-link disabled" %>
+                </li>
+              </ul>
+            <% end %>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    
+
 
     <%= yield %>
   </body>

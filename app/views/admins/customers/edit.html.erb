@@ -4,10 +4,43 @@
 
 <%= form_for(@customer, url: admins_customers_path) do |f| %>
 
+	<h4>会員ID:<%= @customer.id %></h4>
+
+	<div class="field row">
+	  <h4>氏名</h4>
+	  <%= f.text_field :first_name %>
+	  <%= f.text_field :last_name %>
+	</div>
+
+	<div class="field row">
+	  <h4>フリガナ</h4>
+	  <%= f.text_field :first_name_kana %>
+	  <%= f.text_field :last_name_kana %>
+	</div>
+
+	<div class="field row">
+	  <h4>郵便番号</h4>
+	  <%= f.text_field :post_code %>
+	</div>
+
+	<div class="field row">
+	  <h4>住所</h4>
+	  <%= f.text_field :address %>
+	</div>
+
+	<div class="field row">
+	  <h4>電話番号</h4>
+	  <%= f.text_field :phone_number %>
+	</div>
+
 	<div class="field row">
 	  <h4>メールアドレス</h4>
 	  <%= f.text_field :email %>
 	</div>
+
+	<h4>会員ステータス</h4>
+	<label><%= f.radio_button :entry_status, :true %>有効</label>
+	<label><%= f.radio_button :entry_status, :false %>退会</label>
 
   <div class="actions row">
 	<%= f.submit '変更を保存する' %>
