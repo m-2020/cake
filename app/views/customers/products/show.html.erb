@@ -1,14 +1,37 @@
-<h2>商品詳細</h2>
+<h2>商品詳細画面</h2>
 
 <!-- ここからジャンル検索リンク一覧部分 -->
+<h3>ジャンル検索</h3>
+
+<% @genres.each do |genre| %>
+	<%= genre.name %><br>
+<% end %>
 <!-- ここまでジャンル検索リンク一覧部分 -->
 
 
 <!-- ここから商品詳細部分 -->
-<p>イメージ画像</p><%= @product.image %>
-<p>商品名</p><%= @product.name %>
-<p>説明文</p><%= @product.text %>
-<p>税込価格</p><%= @product.price %>
-<p>個数選択</p>
-<botton type="botton">カートに入れる</botton>
+<h3>商品詳細</h3>
+
+<%= form_for(@product, url: admins_products_path) do |product| %>
+	<p>イメージ画像</p>
+	<%= link_to uproduct_path(product.id) do %>
+		<%= product.attachment_field :image %>
+	<% end %>
+
+	<p>商品名</p>
+	<%= link_to product_path(product.id) do %>
+		<%= @product.name %>
+	<% end %>
+
+	<p>説明文</p>
+	<%= @product.text %>
+
+	<p>税込価格</p>
+	<%= ((@product_price * tax).round(2)).round %>
+
+	<p>個数選択</p>
+	<%= product.select :quantity, [['sample1', 1], ['sample2', 2], ['sample3', 3]] %>
+
+	<botton type="botton">カートに入れる</botton>
+<% end %>
 <!-- ここまで商品詳細部分 -->
