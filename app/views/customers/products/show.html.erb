@@ -12,19 +12,15 @@
 <!-- ここから商品詳細部分 -->
 <h3>商品詳細</h3>
 
-<%= form_for(@product, url: admins_products_path) do |product| %>
+<%= form_for(@product, url:cart_products , method: :post) do |product| %>
 	<p>イメージ画像</p>
-	<%= link_to uproduct_path(product.id) do %>
-		<%= product.attachment_field :image %>
-	<% end %>
+	<%= product.attachment_field :image_id %>
 
 	<p>商品名</p>
-	<%= link_to product_path(product.id) do %>
-		<%= @product.name %>
-	<% end %>
+	<%= product.name %>
 
 	<p>説明文</p>
-	<%= @product.text %>
+	<%= product.text %>
 
 	<p>税込価格</p>
 	<%= ((@product_price * tax).round(2)).round %>
@@ -32,6 +28,8 @@
 	<p>個数選択</p>
 	<%= product.select :quantity, [['sample1', 1], ['sample2', 2], ['sample3', 3]] %>
 
-	<botton type="botton">カートに入れる</botton>
+	<%= hidden_field_tag :product_id, product.id %>
+
+	<%= product.submit "カートに入れる" %>
 <% end %>
 <!-- ここまで商品詳細部分 -->
