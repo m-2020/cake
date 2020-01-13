@@ -69,3 +69,6 @@ gem 'jquery-rails'
 #add banjou
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+#add banjou
+gem 'kaminari','~> 1.1.1'
