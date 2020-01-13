@@ -23,6 +23,9 @@ get '/orders/thanks' => 'customers/orders#thanks'
 get '/orders/judgement' => 'customers/orders#judgement'
 
 get '/admins/orders/top' => 'admins/orders#top'
+get '/customers/myedit' => 'customers/customers#edit'
+patch '/customers/update' => 'customers/customers#update'
+
 
 namespace :admins do
 	resources :customers,only: [:index, :show, :edit, :update]
@@ -32,13 +35,12 @@ namespace :admins do
 end
 
 scope module: :customers do
-	resource :customers,only: [:show, :edit, :update]
+	resource :customers,only: [:show, :update]
 	resources :products,only: [:index, :show]
 	resources :addresses,only: [:index, :new, :create, :edit, :update, :destroy]
 	resources :cart_products,only: [:index, :create, :update, :destroy]
 	resources :orders,only: [:index, :new, :create, :show]
 end
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
