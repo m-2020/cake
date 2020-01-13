@@ -15,11 +15,11 @@
 		<tbody>
 			<%= @products.each do |product| %>
 			<tr>
-				<td>1</td>
-				<td>洋梨チーズタルト</td>
-				<td>1,200</td>
-				<td>ケーキ</td>
-				<td>販売中</td>
+				<td><%= product.id %></td>
+				<td><%= product.name %></td>
+				<td><%= product.price %></td>
+				<td><%= product.genre.name %></td>
+				<td><%= product.sale_status_str %></td>
 			</tr>
 			<% end %>
 		</tbody>
