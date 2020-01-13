@@ -15,23 +15,23 @@
 		<% end %>
 
 		<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>ジャンル</th>
-				<th>詳細</th>
-				<th></th>
-			</tr>
-		</thead>
-
-		<% @genres.each do |genre| %>
-			<tbody>
+			<thead>
 				<tr>
-					<td><%= @genre.name %></td>
-					<td>有効</td>
-					<td>編集する</td>
+					<th>ジャンル</th>
+					<th>詳細</th>
+					<th></th>
 				</tr>
-			</tbody>
-		<% end %>
+			</thead>
+
+			<% @genres.each do |genre| %>
+				<tbody>
+					<tr>
+						<td><%= genre.name %></td>
+						<td><%= genre.display_presence_str %></td>
+						<td><%=link_to "編集",edit_admins_genre_path(genre.id) %></td>
+					</tr>
+				</tbody>
+			<% end %>
 		</table>
 	</div>
 </div>
