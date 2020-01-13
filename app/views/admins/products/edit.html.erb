@@ -2,7 +2,9 @@
 	<div class="row">
 		<h2><strong>商品 編集画面</strong></h2>
 
-		<%= form_for(@product, url: admins_products_path) do |f| %>
+		<%= form_for(@product, url: admins_product_path) do |f| %>
+
+		<%= attachment_image_tag @product, :image, :fill, 100, 100 %>
 
 		<%= f.attachment_field :image %>
 

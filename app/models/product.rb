@@ -7,4 +7,7 @@ class Product < ApplicationRecord
 
 	attachment :image
 
+	def sale_status_str
+		self.sale_status ? "販売中" : "売切れ"
+	end
 end

@@ -3,6 +3,7 @@
 		<h2><strong>商品 詳細画面</strong></h2>
 
 		<h4>商品画像</h4>
+		<%= attachment_image_tag @product, :image, :fill, 100, 100 %>
 
 		<h4>商品名</h4>
 		<%= @product.name %>
@@ -17,7 +18,7 @@
 		<%= @product.price %>
 
 		<h4>販売ステータス</h4>
-		<%= @product.sale_status %>
+		<%= @product.sale_status_str %>
 
 		<br>
 		<br>
