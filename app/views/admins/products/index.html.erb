@@ -13,10 +13,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%= @products.each do |product| %>
+			<% @products.each do |product| %>
 			<tr>
 				<td><%= product.id %></td>
-				<td><%= product.name %></td>
+				<td><%= link_to product.name ,admins_product_path(product.id) %></td>
 				<td><%= product.price %></td>
 				<td><%= product.genre.name %></td>
 				<td><%= product.sale_status_str %></td>
@@ -24,5 +24,6 @@
 			<% end %>
 		</tbody>
 		</table>
+		<%= paginate @products, class: "paginate" %>
 	</div>
 </div>
