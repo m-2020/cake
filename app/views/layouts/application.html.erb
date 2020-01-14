@@ -58,6 +58,9 @@
                 <li class="nav-item">
                   <%= link_to "log in", destroy_customer_session_path, method: :delete, :class => "nav-link disabled" %>
                 </li>
+                <li class="nav-item">
+                  <%= link_to "sign_up", new_customer_registration_path, :class => "nav-link disabled" %>
+                </li>
               </ul>
             <% end %>
             <form class="form-inline my-2 my-lg-0">
