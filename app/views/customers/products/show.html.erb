@@ -4,7 +4,7 @@
 <h3>ジャンル検索</h3>
 
 <% @genres.each do |genre| %>
-	<%= genre.name %><br>
+	<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
 <% end %>
 <!-- ここまでジャンル検索リンク一覧部分 -->
 
@@ -12,24 +12,28 @@
 <!-- ここから商品詳細部分 -->
 <h3>商品詳細</h3>
 
-<%= form_for(@product, url:cart_products , method: :post) do |product| %>
 	<p>イメージ画像</p>
-	<%= product.attachment_field :image_id %>
+	<%= attachment_image_tag @product, :image, :fill, 100, 100 %>
 
 	<p>商品名</p>
-	<%= product.name %>
+	<%= @product.name %>
 
 	<p>説明文</p>
-	<%= product.text %>
+	<%= @product.text %>
 
 	<p>税込価格</p>
-	<%= ((@product_price * tax).round(2)).round %>
+	<%= @product.price %>
+
+
+<!-- submitを実行すると、url:cart_productsのPOSTメソッドへ飛ぶ -->
+<%= form_for(@cart_product, url:cart_products_path, method: :post) do |cart_product| %>
 
 	<p>個数選択</p>
-	<%= product.select :quantity, [['sample1', 1], ['sample2', 2], ['sample3', 3]] %>
+	<%= cart_product.number_field :quantity, in: 1..100 %><br>
 
-	<%= hidden_field_tag :product_id, product.id %>
+	<%= cart_product.hidden_field :product_id, value: @product.id %>
 
-	<%= product.submit "カートに入れる" %>
+	<%= cart_product.submit "カートに入れる" %>
+
 <% end %>
 <!-- ここまで商品詳細部分 -->
