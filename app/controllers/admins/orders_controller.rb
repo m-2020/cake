@@ -6,7 +6,7 @@ class Admins::OrdersController < ApplicationController
 	end
 
 	def index
-		@orders = Oeder.all
+		@orders = Order.page(params[:page]).reverse_order
 	end
 
 	def show
@@ -14,7 +14,7 @@ class Admins::OrdersController < ApplicationController
 	end
 
 	def update
-	
+
 	end
 
 	private
