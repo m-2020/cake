@@ -28,10 +28,11 @@
 					<tr>
 						<td><%= genre.name %></td>
 						<td><%= genre.display_presence_str %></td>
-						<td><%=link_to "編集",edit_admins_genre_path(genre.id) %></td>
+						<td><%= link_to "編集",edit_admins_genre_path(genre.id) %></td>
 					</tr>
 				</tbody>
 			<% end %>
 		</table>
+		<%= paginate @genres, class: "paginate" %>
 	</div>
 </div>

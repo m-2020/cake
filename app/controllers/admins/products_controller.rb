@@ -1,7 +1,7 @@
 class Admins::ProductsController < ApplicationController
 
 	def index
-		@products = Product.all
+		@products = Product.page(params[:page]).reverse_order
 		@product = Product.new
 	end
 
@@ -12,7 +12,7 @@ class Admins::ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		@product.save
-		render :index
+		redirect_to admins_products_path
 	end
 
 	def show

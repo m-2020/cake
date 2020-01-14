@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
 	def after_sign_in_path_for(resource)
-		if resource.kind_of?(Admin)
+		if admin_signed_in?
 			admins_orders_top_path
-		else
+		elsif customer_signed_in?
 			# カスタマーのトップができたら変える
 			products_path
 		end
@@ -14,12 +14,12 @@ class ApplicationController < ActionController::Base
 
 			
 	def after_sign_out_path_for(resource)
-
-		if resource.kind_of?(Admin)
-	  		admin_session_path
-	  	else
+		# case resource
+		# when Admin
+	 #  		admin_session_path
+	 #  	when Customer
 	  		customer_session_path
-	  	end
+	  	# end
 	end
 
 	protected

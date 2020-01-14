@@ -4,7 +4,7 @@
 <h3>ジャンル検索</h3>
 
 <% @genres.each do |genre| %>
-	<%= genre.name %><br>
+	<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
 <% end %>
 <!-- ここまでジャンル検索リンク一覧部分 -->
 
@@ -12,9 +12,22 @@
 <!-- ここから商品一覧部分 -->
 <h3>商品一覧</h3>
 
+<p>"ジャンル"　〇〇件</p>
+
 <% @products.each do |product| %>
-    <p>イメージ画像</p><%= product.image %>
-    <p>商品名</p><%= product.name %>
-    <p>税込価格</p><%= product.price %>
+
+    <p>イメージ画像</p>
+	<%= link_to product_path(product.id) do %>
+		<%= product.image_id %>
+	<% end %>
+
+    <p>商品名</p>
+    <%= link_to uproduct_path(product.id) do %>
+    	<%= product.name %>
+    <% end %>
+
+    <p>税込価格</p>
+    <%= product.price %>
+
 <% end %>
 <!-- ここまで商品一覧部分 -->
