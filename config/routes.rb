@@ -17,7 +17,7 @@ patch '/customers' => 'customers/customers#change'
 put '/customers' => 'customers/customers#change'
 get '/customers/withdraw' => 'customers/customers#withdraw'
 
-delete '/cart_produsts/:id' => 'customers/cart_products#destroy_all'
+delete '/cart_produsts/' => 'customers/cart_products#destroy_all'
 
 get '/orders/thanks' => 'customers/orders#thanks'
 get '/orders/judgement' => 'customers/orders#judgement'

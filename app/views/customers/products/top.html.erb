@@ -12,17 +12,17 @@
 <!-- ここから商品一覧部分 -->
 <h3>商品一覧</h3>
 
-<p>"ジャンル"　〇〇件</p>
+<p>ALL　全<%= @count %>件</p>
 
 <% @products.each do |product| %>
 
     <p>イメージ画像</p>
 	<%= link_to product_path(product.id) do %>
-		<%= product.image_id %>
+		<%= attachment_image_tag product, :image, :fill, 100, 100 %>
 	<% end %>
 
     <p>商品名</p>
-    <%= link_to uproduct_path(product.id) do %>
+    <%= link_to product_path(product.id) do %>
     	<%= product.name %>
     <% end %>
 
