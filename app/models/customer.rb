@@ -11,12 +11,12 @@ class Customer < ApplicationRecord
 
     validates :last_name, presence: true
     validates :first_name, presence: true
-    validates :last_name_kana, presence: true
-    validates :first_name_kana, presence: true
+    validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
+    validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
     validates :post_code, presence: true
     validates :address, presence: true
-    validates :phone_number, presence: true
-    validates :tel,numericality: { only_integer: true}
+    VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
+    validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
 
     def entry_status_str
         self.entry_status ? "有効" : "退会"

@@ -2,13 +2,16 @@
 	<div class="row">
 
 <h1>マイページ</h1>
+<% if flash[:notice] %>
+<h1><%= flash[:notice] %></h1>
+<% end %>
 
 <table>
 
 <tr>
 	<th><h2>登録情報</h2></th>
 	<th><%= link_to "編集する", customers_myedit_path(current_customer) %></th>
-	<th>パスワードを変更する</th>
+	<th><%= link_to "パスワードを変更する", edit_customer_registration_path %></th>
 
 </tr>
 

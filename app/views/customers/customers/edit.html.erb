@@ -1,3 +1,9 @@
+<% if @customer.errors.any? %>
+<%= @customer.errors.count %>件入力に誤りがありますぜ<br>
+<% @customer.errors.full_messages.each do |massage| %>
+<%= massage %><br>
+<% end %>
+<% end %>
 <table>
 
 <tr>
@@ -19,8 +25,8 @@
 <tr>
 
 <th>カナ</th>
-<th><%= f.text_field :last_name_kana, autofocus: true, placeholder:"苗字カナ"%></th>
-<th><%= f.text_field :first_name_kana, autofocus: true, placeholder:"名前カナ"%></th>
+<th><%= f.text_field :last_name_kana, autofocus: true, placeholder:"苗字(全角カタカナ)"%></th>
+<th><%= f.text_field :first_name_kana, autofocus: true, placeholder:"名前(全角カタカナ)"%></th>
 
 </tr>
 
@@ -56,14 +62,14 @@
 <tr>
 
 <th>メールアドレス</th>
-<th><%= f.text_field :last_name, autofocus: true, placeholder:"アドレス"%></th>
+<th><%= f.text_field :email, autofocus: true, placeholder:"アドレス"%></th>
 
 </tr>
 
 
 
 
-<%= f.submit "Update User" %>
+<tr><th><%= f.submit "Update User" %></th></tr>
 
 
 
