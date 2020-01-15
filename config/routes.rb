@@ -13,8 +13,7 @@ devise_for :customers, controllers: {
 
 root 'customers/products#top'
 
-patch '/customers' => 'customers/customers#change'
-put '/customers' => 'customers/customers#change'
+patch '/customers/change' => 'customers/customers#change', as: "change"
 get '/customers/withdraw' => 'customers/customers#withdraw'
 
 delete '/cart_produsts/' => 'customers/cart_products#destroy_all'
