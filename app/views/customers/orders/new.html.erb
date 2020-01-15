@@ -1,0 +1,26 @@
+<h1>購入情報入力</h1>
+<h2>支払方法</h2>
+	
+	<%= form_for(@order) do |f| %>
+		<label><%= f.radio_button :payment, :true %>クレジットカード</label>
+		<label><%= f.radio_button :payment, :false %>銀行振込</label>
+	<% end %>
+<h2>お届け先</h2>
+	<%= form_for(@order) do |f| %>
+		<label><%= f.radio_button :address, "-1" %>ご自身の住所</label>
+			<%= @customer.post_code %>
+			<%= @customer.address %>
+			<%= @customer.first_name %>
+			<%= @customer.last_name %>
+		<label><%= f.radio_button :address, :address_id %>登録先の住所から選択</label>
+				<%= f.collection_select :address_id, Address.all, :id, :select_address  %>
+		<label><%= f.radio_button :address, "0" %>新しいお届け先</label>
+		  <p>郵便番号</p>
+		    <%= f.text_field :post_code %>
+		  <p>住所</p>
+		    <%= f.text_field :address %>
+		  <p>宛名</p>
+		  	<%= f.text_field :name %>
+	<% end %>
+
+<%=link_to "確認画面へ進む",orders_judgement_path %>
