@@ -5,7 +5,7 @@
 
       <table class='table table-hover table-inverse'>
         <thead>
-          <tr> 
+          <tr>
             <th>会員ID</th>
             <th>氏名</th>
             <th>メールアドレス</th>
@@ -25,4 +25,5 @@
           </tbody>
         <% end %>
       </table>
+      <%= paginate @customers, class: "paginate" %>
 </div>

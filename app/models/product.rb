@@ -10,4 +10,9 @@ class Product < ApplicationRecord
 	def sale_status_str
 		self.sale_status ? "販売中" : "売切れ"
 	end
+
+	def tax_price
+		self.price * 1.1
+	end
+
 end
