@@ -12,4 +12,8 @@ class Address < ApplicationRecord
 	validates :name,
 	 presence: true
 
+	 def select_address
+		"〒" + self.post_code.to_s + self.address + self.name
+	end
+
 end
