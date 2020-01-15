@@ -1,58 +1,63 @@
-カート一覧
+<div class="container">
+  <div class="row">
 
-<h3>ショッピングカート</h3>
-<botton type="botton"></botton>
-<botton type="botton">
-	<%= link_to "カートを空にする",cart_produsts_path, method: :delete, data: { confirm: '本当に消しますか?' } %>
-</botton>
+    カート一覧
 
-<!-- ここからカート一覧表示index部分 -->
-    <table>
-      <thead>
-        <tr>
-          <th>イメージ画像</th>
-          <th>商品名</th>
-          <th>税込価格</th>
-          <th>数量</th>
-          <th>数量変更</th>
-          <th>小計</th>
-          <th>削除する</th>
-          <th colspan="7"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cart_products.each do |cart_product| %>
-          <tr>
-            <td><%= attachment_image_tag cart_product.product, :image, :fill, 100, 100 %></td>
-            <td><%= cart_product.product.name %></td>
-            <td><%= cart_product.product.price %></td>
+    <h3>ショッピングカート</h3>
+    <botton type="botton"></botton>
+    <botton type="botton">
+    	<%= link_to "カートを空にする",cart_produsts_path, method: :delete, data: { confirm: '本当に消しますか?' } %>
+    </botton>
 
-<!-- submitを実行すると、url:cart_productのPATCHメソッドへ飛ぶ -->
-			<%= form_for(cart_product, url:cart_product_path(cart_product.id), method: :patch) do |cart_product| %>
-	            <td><%= cart_product.number_field :quantity, in: 1..100 %></td>
-	            <td><%= cart_product.submit "変更" %></td>
-	        <% end %>
+    <!-- ここからカート一覧表示index部分 -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>イメージ画像</th>
+              <th>商品名</th>
+              <th>税込価格</th>
+              <th>数量</th>
+              <th>数量変更</th>
+              <th>小計</th>
+              <th>削除する</th>
+              <th colspan="7"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_products.each do |cart_product| %>
+              <tr>
+                <td><%= attachment_image_tag cart_product.product, :image, :fill, 100, 100 %></td>
+                <td><%= cart_product.product.name %></td>
+                <td><%= cart_product.product.price %></td>
 
-            <td><%= cart_product.product.price %></td>
-            <td>
-            	<botton type="botton">
-					<%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, data: { confirm: '本当に消しますか?' } %>
-				</botton>
-			</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <!-- submitを実行すると、url:cart_productのPATCHメソッドへ飛ぶ -->
+    			<%= form_for(cart_product, url:cart_product_path(cart_product.id), method: :patch) do |cart_product| %>
+    	            <td><%= cart_product.number_field :quantity, in: 1..100 %></td>
+    	            <td><%= cart_product.submit "変更" %></td>
+    	        <% end %>
+
+                <td><%= cart_product.product.price %></td>
+                <td>
+                	<botton type="botton">
+    					<%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, data: { confirm: '本当に消しますか?' } %>
+    				</botton>
+    			</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
 
-<!-- ここまでカート一覧表示index部分 -->
+    <!-- ここまでカート一覧表示index部分 -->
 
-<botton type="botton"><%= link_to '買い物を続ける', root_path %></botton>
-<botton type="botton">再計算</botton>
+    <botton type="botton"><%= link_to '買い物を続ける', root_path %></botton>
+    <botton type="botton">再計算</botton>
 
-<!-- ここから合計金額表示部分 -->
-<p>合計金額</p>
-<p>¥0,000</p>
-<!-- ここまで合計金額表示部分 -->
+    <!-- ここから合計金額表示部分 -->
+    <p>合計金額</p>
+    <p>¥0,000</p>
+    <!-- ここまで合計金額表示部分 -->
 
-<botton type="botton"><%= link_to '情報入力に進む', new_order_path %></botton>
+    <botton type="botton"><%= link_to '情報入力に進む', new_order_path %></botton>
+  </div>
+</div>

@@ -14,8 +14,8 @@
 		<h4>ジャンル</h4>
 		<%= @product.genre.name %>
 
-		<h4>税込価格</h4>
-		<%= @product.price %>
+		<h4>税込価格（税抜価格）</h4>
+		<%= @product.price.to_s(:delimited) %>（<%= @product.tax_price.floor.to_s(:delimited) %>）円
 
 		<h4>販売ステータス</h4>
 		<%= @product.sale_status_str %>
