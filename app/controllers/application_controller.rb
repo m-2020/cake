@@ -6,19 +6,20 @@ class ApplicationController < ActionController::Base
 		if admin_signed_in?
 			admins_orders_top_path
 		elsif customer_signed_in?
-			root_path
+			# カスタマーのトップができたら変える
+			products_path
 		end
 	end
 
 
 			
 	def after_sign_out_path_for(resource)
-		case resource
-		when :admin
-	  		admin_session_path
-	  	when :customer
+		# case resource
+		# when Admin
+	 #  		admin_session_path
+	 #  	when Customer
 	  		customer_session_path
-	  	end
+	  	# end
 	end
 
 	protected
