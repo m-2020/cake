@@ -1,4 +1,9 @@
 class Customer < ApplicationRecord
+
+def active_for_authentication?
+    super && self.entry_status == true
+end
+
  before_validation :before_validations
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
