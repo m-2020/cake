@@ -1,62 +1,70 @@
-<h2>配送先一覧/登録</h2>
+<div class="container">
+  <div class="row">
 
-<% if @address.errors.any? %>
-    <h4>入力した内容にエラーが<%= @address.errors.count %>件あります</h4>
-    <ul>
-      <% @address.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-<% end %>
+    <h2>配送先一覧/登録</h2>
 
-<!-- ここから新規登録部分　new -->
-	<%= form_for(@address) do |f| %>
-
-
-	  <p>郵便番号</p>
-	    <%= f.text_field :post_code %>
-	  <p>住所</p>
-	    <%= f.text_field :address %>
-	  <p>宛名</p>
-	    <%= f.text_field :name %>
-	  <br>
-	    <%= f.submit "登録する" %>
-
-	<% end %>
-<!-- ここまで新規登録部分　new -->
+    <% if @address.errors.any? %>
+        <h4>入力した内容にエラーが<%= @address.errors.count %>件あります</h4>
+        <ul>
+          <% @address.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+    <% end %>
 
 
+    <!-- ここから新規登録部分　new -->
+    	<%= form_for(@address) do |f| %>
 
-<!-- ここから一覧部分　index -->
-    <table>
-      <thead>
-        <tr>
-          <th>郵便番号</th>
-          <th>住所</th>
-          <th>宛名</th>
-          <th></th>
-          <th></th>
-          <th colspan="5"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @addresses.each do |address| %>
-          <tr>
-            <td><%= address.post_code %></td>
-            <td><%= address.address %></td>
-            <td><%= address.name %></td>
-            <td>
-				<botton type="botton">
-					<%= link_to "編集する", edit_address_path(address.id) %>
-				</botton>
-            </td>
-            <td>
-            	<botton type="botton">
-					<%= link_to "削除する", address_path(address.id), method: :delete, data: { confirm: '本当に消しますか?' } %>
-				</botton>
-			</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-<!-- ここまで一覧部分　index -->
+
+    	  <p>郵便番号</p>
+    	    <%= f.text_field :post_code %>
+    	  <p>住所</p>
+    	    <%= f.text_field :address %>
+    	  <p>宛名</p>
+    	    <%= f.text_field :name %>
+    	  <br>
+    	    <%= f.submit "登録する" %>
+
+    	<% end %>
+    <!-- ここまで新規登録部分　new -->
+
+
+
+    <!-- ここから一覧部分　index -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>郵便番号</th>
+              <th>住所</th>
+              <th>宛名</th>
+              <th></th>
+              <th></th>
+              <th colspan="5"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @addresses.each do |address| %>
+              <tr>
+                <td><nobr>〒</nobr><%= address.post_code %></td>
+                <td><%= address.address %></td>
+                <td><%= address.name %></td>
+                <td>
+    				<botton type="botton" class="btn btn-default">
+    					<%= link_to "編集する", edit_address_path(address.id) %>
+    				</botton>
+                </td>
+                <td>
+                	<botton type="botton" class="btn btn-default">
+    					<%= link_to "削除する", address_path(address.id), method: :delete, data: { confirm: '本当に消しますか?' } %>
+    				</botton>
+    			</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @addresses, class: "paginate" %>
+    <!-- ここまで一覧部分　index -->
+
+  </div>
+</div>

@@ -4,7 +4,7 @@ class Customers::AddressesController < ApplicationController
 
 	def index
 		@address = Address.new
-		@addresses = Address.all
+		@addresses = Address.page(params[:page]).reverse_order
 	end
 
 	def new
@@ -17,7 +17,7 @@ class Customers::AddressesController < ApplicationController
 		if @address.save
 			redirect_to addresses_path
 		else
-			@addresses = Address.all
+			@addresses = Address.page(params[:page]).reverse_order
 			render action: :index
 		end
 	end

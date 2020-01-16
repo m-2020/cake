@@ -23,12 +23,12 @@
 		        </tr>
 		      </thead>
 		      <tbody>
+		      	<% sum = 0 %>
 		        <% @cart_products.each do |cart_product| %>
 		          <tr>
 		            <td><%= attachment_image_tag cart_product.product, :image, :fill, 100, 100 %></td>
 		            <td><%= cart_product.product.name %></td>
-		            <td><% price = cart_product.product.price*1.1 %>
-		            	<%= price.floor.to_s(:delimited) %>
+		            <td><%= number_to_currency(cart_product.tax_price, :precision => 0) %>
 		            </td>
 
 					<!-- submitを実行すると、url:cart_productのPATCHメソッドへ飛ぶ -->
@@ -37,8 +37,8 @@
 			            <td><%= cart_product.submit "変更" %></td>
 			        <% end %>
 
-		            <td><% cart_price = cart_product.product.price*cart_product.quantity*1.1 %>
-		            	<%= cart_price.floor.to_s(:delimited) %>
+		            <td>
+		            	<%= number_to_currency(cart_product.product.price * cart_product.quantity*1.1, :precision => 0) %>
 		            </td>
 		            <td>
 		            	<!-- cart_products_controllerのdestroyアクションへ -->
@@ -47,11 +47,11 @@
 						</botton>
 					</td>
 		          </tr>
+		          	<% sub_total = cart_product.product.price * cart_product.quantity %>
+		           	<% sum=sum+sub_total %>
 		        <% end %>
 		      </tbody>
 		    </table>
-
-
 		<!-- ここまでカート一覧表示index部分 -->
 
 		<botton type="botton" class="btn btn-default"><%= link_to '買い物を続ける', root_path %></botton>
@@ -60,7 +60,7 @@
 		<!-- ここから合計金額表示部分 -->
 		<p>合計金額</p>
 		<nobr>¥</nobr>
-		(@cart_products.product.price*cart_product.quantity*1.1).floor.to_s(:delimited)
+		<%= number_to_currency(sum*1.1, :precision => 0) %>
 		<nobr>(税込)</nobr>
 		<!-- ここまで合計金額表示部分 -->
 
