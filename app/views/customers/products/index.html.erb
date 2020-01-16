@@ -1,40 +1,50 @@
-<h2>商品一覧画面</h2>
+<div class="container">
+	<div class="row">
 
-<!-- ここからジャンル検索リンク一覧部分 -->
-<h3>ジャンル検索</h3>
+		<h2>商品一覧画面</h2>
 
-<% @genres.each do |genre| %>
-	<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
-<% end %>
-<!-- ここまでジャンル検索リンク一覧部分 -->
+		<div class="col-md-2">
+			<!-- ここからジャンル検索リンク一覧部分 -->
+			<h3>ジャンル検索</h3>
 
+			<% @genres.each do |genre| %>
+				<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
+			<% end %>
+			<!-- ここまでジャンル検索リンク一覧部分 -->
+		</div>
 
-<!-- ここから商品一覧部分 -->
-<h3>商品一覧</h3>
+		<div class="col-md-10">
+			<!-- ここから商品一覧部分 -->
+			<h3>商品一覧</h3>
 
-<p>
-	<% if params[:genre_id] %>
-		<%= @genre.name %>
-	<% else %>
-		<nobr>ALL</nobr>
-	<% end %>
-	　全<%= @count %>件
-</p>
+			<p>
+				(<% if params[:genre_id] %>
+					<%= @genre.name %>
+				<% else %>
+					<nobr>ALL</nobr>
+				<% end %>
+				　全<%= @count %>件)
+			</p>
 
-<% @products.each do |product| %>
+			<% @products.each do |product| %>
 
-    <p>イメージ画像</p>
-	<%= link_to product_path(product.id) do %>
-		<%= attachment_image_tag product, :image, :fill, 100, 100 %>
-	<% end %>
+			    <p>イメージ画像</p>
+				<%= link_to product_path(product.id) do %>
+					<%= attachment_image_tag product, :image, :fill, 200, 180 %>
+				<% end %>
 
-    <p>商品名</p>
-    <%= link_to product_path(product.id) do %>
-    	<%= product.name %>
-    <% end %>
+			    <p>商品名</p>
+			    <%= link_to product_path(product.id) do %>
+			    	<%= product.name %>
+			    <% end %>
 
-    <p>税込価格</p>
-    <%= product.price %>
+			    <p>税込価格</p>
+			    <%= number_to_currency(product.tax_price, :precision => 0) %>
 
-<% end %>
-<!-- ここまで商品一覧部分 -->
+			<% end %>
+			<%= paginate @products, class: "paginate" %>
+			<!-- ここまで商品一覧部分 -->
+		</div>
+
+	</div>
+</div>

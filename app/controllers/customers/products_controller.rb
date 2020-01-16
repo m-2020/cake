@@ -8,12 +8,12 @@ class Customers::ProductsController < ApplicationController
 	      # genreのデータベースのテーブルから一致するidを取得
 	      @genre = Genre.find(params[:genre_id])
 	      # genre_idと紐づく投稿を取得
-	      @products = @genre.products.order(created_at: :desc).all
+	      @products = @genre.products.order(created_at: :desc).page(params[:page]).reverse_order
 	      @count = Product.where(genre_id: @genre.id).count
 	    # urlにgenre_id(params)がない場合
 	    else
 	      # 投稿すべてを取得
-	      @products = Product.order(created_at: :desc).all
+	      @products = Product.order(created_at: :desc).page(params[:page]).reverse_order
 	      @count = Product.all.count
 	  	end
 
@@ -27,12 +27,12 @@ class Customers::ProductsController < ApplicationController
 	      # genreのデータベースのテーブルから一致するidを取得
 	      @genre = Genre.find(params[:genre_id])
 	      # genre_idと紐づく投稿を取得
-	      @products = @genre.products.order(created_at: :desc).all
+	      @products = @genre.products.order(created_at: :desc).page(params[:page]).reverse_order
 	      @count = Product.where(genre_id: @genre.id).count
 	    # urlにgenre_id(params)がない場合
 	    else
 	      # 投稿すべてを取得
-	      @products = Product.order(created_at: :desc).all
+	      @products = Product.order(created_at: :desc).page(params[:page]).reverse_order
 	      @count = Product.all.count
 	    end
 

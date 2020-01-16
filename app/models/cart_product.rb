@@ -6,4 +6,9 @@ class CartProduct < ApplicationRecord
 	validates :quantity,
 	 presence: true
 
+	def tax_price
+		self.product.price * 1.1
+	end
+
+
 end
