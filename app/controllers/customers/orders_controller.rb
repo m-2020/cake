@@ -22,8 +22,15 @@ class Customers::OrdersController < ApplicationController
 
 
 	def thanks
+
 	end
 
+	def create
+		@order = Order.new(odrder_params)
+		@customer = current_customer
+		@order.save
+		redirect_to orders_thanks_path
+	end
 
 	private
 	def order_params
