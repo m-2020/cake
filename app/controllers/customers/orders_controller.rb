@@ -6,8 +6,23 @@ class Customers::OrdersController < ApplicationController
 	end
 
 	def judgement
-		@order = Order.new(odrder_params)
 		@customer = current_customer
+		# @customer_address = @customer.address
+		@cart_products = current_customer.cart_products
+		@order = Order.new(order_params)
+	end
+
+	def create
+		@order = Order.new(order_params)
+		@order.customer_id = current_customer.id
+		@order.save
+		redirect_to orders_thanks_path
+	end
+
+
+
+	def thanks
+
 	end
 
 	def create
