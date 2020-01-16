@@ -76,3 +76,4 @@ gem 'rails-i18n'
 #add banjou
 gem 'kaminari','~> 1.1.1'
 gem "pry-rails"
+gem "pry-byebug"
