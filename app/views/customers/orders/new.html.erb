@@ -1,24 +1,34 @@
 <h1>購入情報入力</h1>
 <h2>支払方法</h2>
-	
+
 	<%= form_for(@order, url: orders_judgement_path, method: :get ) do |f| %>
-		<label><%= f.radio_button :payment, :true %>クレジットカード</label>
-		<label><%= f.radio_button :payment, :false %>銀行振込</label>
+		<label><%= f.radio_button :payment, :true , {:checked => true}%>クレジットカード</label>
+		<label><%= f.radio_button :payment, :false , {}%>銀行振込</label>
 <h2>お届け先</h2>
-		<label><%= f.radio_button :address, "-1" %>ご自身の住所</label>
+		<label><%= radio_button_tag :select_button, "customer_address" ,{} %>ご自身の住所</label>
 			<%= @customer.post_code %>
 			<%= @customer.address %>
 			<%= @customer.first_name %>
 			<%= @customer.last_name %>
-		<label><%= f.radio_button :address, :address_id %>登録先の住所から選択</label>
-				<%= f.collection_select :address_id, Address.all, :id, :select_address  %>
-		<label><%= f.radio_button :address, "0" %>新しいお届け先</label>
+		<label><%= radio_button_tag :select_button, "addresses" ,{} %>登録先の住所から選択</label>
+				<%= f.collection_select :address, current_customer.addresses.all,:id, :select_address  %>
+		<label><%= radio_button_tag :select_button, "new_address" ,{} %>新しいお届け先</label>
 		  <p>郵便番号</p>
 		    <%= f.text_field :post_code %>
 		  <p>住所</p>
 		    <%= f.text_field :address %>
 		  <p>宛名</p>
 		  	<%= f.text_field :name %>
+
+		  	<%= f.hidden_field :customer_id, value: @order.customer_id %>
+		  	<%= f.hidden_field :post_code, value: @order.post_code %>
+		  	<%= f.hidden_field :address, value: @order.address %>
+		  	<%= f.hidden_field :postage, value: 800 %>
+		  	<%= f.hidden_field :billing_amount, value: @order.billing_amount %>
+		  	<%= f.hidden_field :payment, value: @order.payment %>
+		  	<%= f.hidden_field :sending_status, value: @order.sending_status %>
+		  	<%= f.hidden_field :name, value: @order.name %>
+
 
 		  	<%= f.submit '確認画面へ進む' %>
 

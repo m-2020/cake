@@ -1,1 +1,10 @@
-注文一覧ｕｎｎｔｉ
+<div class="col-md-10">
+			<!-- ここから商品一覧部分 -->
+	<h3>商品一覧</h3>
+
+		<% @orders.each do |order| %>
+			<%= order.address %>
+		<% end %>
+
+			<!-- ここまで商品一覧部分 -->
+</div>
