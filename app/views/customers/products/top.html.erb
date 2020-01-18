@@ -1,11 +1,8 @@
 <div class="container">
     <div class="row">
-
-        <h2>会員側トップページ</h2>
-
         <div class="col-md-2">
             <!-- ここからジャンル検索リンク一覧部分 -->
-            <h3>ジャンル検索</h3>
+            <h2>ジャンル検索</h2>
 
             <% @genres.each do |genre| %>
             	<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
@@ -16,26 +13,36 @@
         <div class="col-md-10">
             <!-- ここから商品一覧部分 -->
             <h3>商品一覧</h3>
+                <div class="row">
 
-            <p>(ALL　全<%= @count %>件)</p>
+                    <p style="padding-left: 20px;">
+                        (ALL　全<%= @count %>件)
+                    </p>
 
-            <% @products.each do |product| %>
+                    <% @products.each do |product| %>
+                        <div class="col-sm-4" style="padding-bottom: 50px;">
 
-                <p>イメージ画像</p>
-            	<%= link_to product_path(product.id) do %>
-            		<%= attachment_image_tag product, :image, :fill, 200, 180 %>
-            	<% end %>
+                    	<%= link_to product_path(product.id) do %>
+                    		<%= attachment_image_tag product, :image, :fill, 200, 180 %>
+                    	<% end %>
 
-                <p>商品名</p>
-                <%= link_to product_path(product.id) do %>
-                	<%= product.name %>
-                <% end %>
+                        <div style="margin-top: 10px"></div>
 
-                <p>税込価格</p>
-                <%= number_to_currency(product.tax_price, :precision => 0) %>
+                        <p>
+                            <%= link_to product_path(product.id) do %>
+                            	<%= product.name %>
+                            <% end %>
+                        </p>
 
-            <% end %>
-            <%= paginate @products, class: "paginate" %>
+                        <p>
+                            <%= number_to_currency(product.tax_price, :precision => 0) %>
+                        </p>
+
+                        </div>
+                    <% end %>
+
+                    <%= paginate @products, class: "paginate" %>
+                </div>
             <!-- ここまで商品一覧部分 -->
         </div>
 

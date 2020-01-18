@@ -4,46 +4,82 @@
     <title>Cake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="header row">
-      <nav class="navbar navbar-expand-xl navbar-light bg-light">
-        <div class="container">
-          <nav class="nav navbar-nav navbar-left">
-            <a class="navbar-brand" href="#"><%=link_to "ながのCAKE",root_path %></a>
-          </nav>
-          <nav>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+
             <% if admin_signed_in? %>
-              <ul class="nav navbar-nav navbar-right">
-                <li><%=link_to "商品一覧",admins_products_path %></li>
-                <li><%=link_to "会員一覧",admins_customers_path %></li>
-                <li><%=link_to "注文履歴一覧",admins_orders_path %></li>
-                <li><%=link_to "ジャンル管理",admins_genres_path %></li>
-                <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, :class => "nav-link disabled" %></li>
+              <nav class="navbar-header">
+                <%=link_to root_path do %>
+                  <%= image_tag 'logo.png', size: '200x90' %>
+                <% end %>
+              </nav>
+              <nav class="navbar-right" style="margin: 30px 30px 0 0;">
+              <ul class="nav navbar-nav mr-auto">
+                <li>
+                  <%=link_to "商品一覧",admins_products_path %>
+                </li>
+                <li>
+                  <%=link_to "会員一覧",admins_customers_path %>
+                </li>
+                <li>
+                  <%=link_to "注文履歴一覧",admins_orders_path %>
+                </li>
+                <li>
+                  <%=link_to "ジャンル管理",admins_genres_path %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, :class => "nav-link disabled" %>
+                </li>
               </ul>
+              </nav>
+
             <% elsif customer_signed_in? %>
+            <nav class="navbar-header">
+              <%=link_to root_path do %>
+                <%= image_tag 'logo.png', size: '200x90' %>
+              <% end %>
+            </nav>
+            <nav class="navbar-right" style="margin: 30px 30px 0 0;">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <%=link_to "カート",cart_products_path %>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                   <%=link_to "MyPage", "/customers" %>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                   <%=link_to "about", "#" %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "log out", destroy_customer_session_path, method: :delete, :class => "nav-link disabled" %>
                 </li>
-                <li><%= current_customer.last_name %>殿</li>
+                <li>
+                  <%= current_customer.last_name %>殿
+                </li>
               </ul>
+              </nav>
+
+            <% elsif request.url.include? "admins" %>
+              <nav class="navbar-header">
+                  <%= image_tag 'logo.png', size: '200x90' %>
+              </nav>
+
             <% else %>
+            <nav class="navbar-header">
+              <%=link_to root_path do %>
+                <%= image_tag 'logo.png', size: '200x90' %>
+              <% end %>
+            </nav>
+            <nav class="navbar-right" style="margin: 30px 30px 0 0;">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <%=link_to "about", "#" %>
                 </li>
                 <li class="nav-item">
@@ -53,16 +89,20 @@
                   <%= link_to "sign_up", new_customer_registration_path, :class => "nav-link disabled" %>
                 </li>
               </ul>
+            </nav>
             <% end %>
-            <form class="form-inline my-2 my-lg-0">
+
+            <form class="form-inline" style="float: right; margin-top: 25px;">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+
           </nav>
         </div>
       </nav>
-    </div>
+    </header>
 
+    <div style="margin-top: 100px"></div>
 
     <%= yield %>
   </body>

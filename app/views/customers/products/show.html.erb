@@ -1,11 +1,8 @@
 <div class="container">
 	<div class="row">
-
-		<h2>商品詳細画面</h2>
-
 		<div class="col-md-2">
 			<!-- ここからジャンル検索リンク一覧部分 -->
-			<h3>ジャンル検索</h3>
+			<h2>ジャンル検索</h2>
 
 			<% @genres.each do |genre| %>
 				<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
@@ -16,31 +13,31 @@
 		<div class="col-md-10">
 			<!-- ここから商品詳細部分 -->
 			<h3>商品詳細</h3>
+				<div class="row">
 
-				<p>イメージ画像</p>
-				<%= attachment_image_tag @product, :image, :fill, 400, 300 %>
+					<div class="col-sm-6" style="padding-top: 30px;">
+						<%= attachment_image_tag @product, :image, :fill, 400, 300 %>
+					</div>
 
-				<p>商品名</p>
-				<%= @product.name %>
+					<div class="col-sm-6">
+						<h4 style="padding-bottom: 30px;"><%= @product.name %></h4>
 
-				<p>説明文</p>
-				<%= @product.text %>
+						<p style="padding-bottom: 30px;"><%= @product.text %></p>
 
-				<p>税込価格</p>
-				<%= number_to_currency(@product.tax_price, :precision => 0) %>
-			    <nobr>(税込)</nobr>
+						<h5 style="padding-bottom: 30px;"><%= number_to_currency(@product.tax_price, :precision => 0) %>(税込)</h5>
 
-			<!-- submitを実行すると、url:cart_productsのPOSTメソッドへ飛ぶ -->
-			<%= form_for(@cart_product, url:cart_products_path, method: :post) do |cart_product| %>
+					<!-- submitを実行すると、url:cart_productsのPOSTメソッドへ飛ぶ -->
+					<%= form_for(@cart_product, url:cart_products_path, method: :post) do |cart_product| %>
 
-				<p>個数選択</p>
-				<%= cart_product.number_field :quantity, in: 1..50 %><br>
+						</p style="padding-bottom: 30px;"><%= cart_product.number_field :quantity, in: 1..50 %>個</p>
 
-				<%= cart_product.hidden_field :product_id, value: @product.id %>
+						<%= cart_product.hidden_field :product_id, value: @product.id %>
 
-				<%= cart_product.submit "カートに入れる" %>
+						<%= cart_product.submit "カートに入れる" %>
+					</div>
 
-			<% end %>
+					<% end %>
+				</div>
 			<!-- ここまで商品詳細部分 -->
 		</div>
 
