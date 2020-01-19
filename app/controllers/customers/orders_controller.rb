@@ -35,12 +35,22 @@ class Customers::OrdersController < ApplicationController
 	end
 
 	def create
+		@cart_products = current_customer.cart_products
 		@order = current_customer.orders.new(order_params)
+
 		@order.save
+
+		@cart_products.each do |product|
+			@product = OrderProduct.new
+			@product.order_id = @order.id
+			@product.product_id = product.product_id
+			@product.quantity = product.quantity
+			@product.price = product.product.price
+			@product.save
+		end
 
 		# @order_product = current_customer.order_products.new(order_products_params)
 		# @order_product.save
-
 		redirect_to orders_thanks_path
 	end
 
@@ -58,7 +68,7 @@ class Customers::OrdersController < ApplicationController
 	end
 
 	def order_products_params
-		params.require(:order_product).permit(:order_id, :product_id, :quantity, :price, :cook_status)
+		params.require(:order_product).permit(:product_id, :quantity, :price, :cook_status)
 	end
 
 end
