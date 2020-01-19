@@ -1,8 +1,9 @@
 <div class="container">
 	<div class="row">
+		<div style="padding-top: 30px;"></div>
 		<div class="col-md-2">
 			<!-- ここからジャンル検索リンク一覧部分 -->
-			<h2>ジャンル検索</h2>
+			<h3>ジャンル検索</h3>
 
 			<% @genres.each do |genre| %>
 				<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
@@ -12,28 +13,32 @@
 
 		<div class="col-md-10">
 			<!-- ここから商品詳細部分 -->
-			<h3>商品詳細</h3>
+			<h2>商品詳細</h2>
 				<div class="row">
 
-					<div class="col-sm-6" style="padding-top: 30px;">
-						<%= attachment_image_tag @product, :image, :fill, 400, 300 %>
+					<div style="padding-top: 30px;"></div>
+
+					<div class="col-sm-6">
+						<%= attachment_image_tag @product, :image, :fill, 400, 360, :class => "img-rounded" %>
 					</div>
 
 					<div class="col-sm-6">
-						<h4 style="padding-bottom: 30px;"><%= @product.name %></h4>
+						<h3 style="padding-bottom: 30px;"><%= @product.name %></h3>
 
 						<p style="padding-bottom: 30px;"><%= @product.text %></p>
 
-						<h5 style="padding-bottom: 30px;"><%= number_to_currency(@product.tax_price, :precision => 0) %>(税込)</h5>
+						<h4 style="padding-bottom: 30px;"><%= number_to_currency(@product.tax_price, :precision => 0) %>(税込)</h4>
 
 					<!-- submitを実行すると、url:cart_productsのPOSTメソッドへ飛ぶ -->
 					<%= form_for(@cart_product, url:cart_products_path, method: :post) do |cart_product| %>
 
-						</p style="padding-bottom: 30px;"><%= cart_product.number_field :quantity, in: 1..50 %>個</p>
+						</p style="padding-bottom: 30px;">
+							<%= cart_product.number_field :quantity, in: 1..50 %>個
+						</p>
 
 						<%= cart_product.hidden_field :product_id, value: @product.id %>
 
-						<%= cart_product.submit "カートに入れる" %>
+						<%= cart_product.submit "カートに入れる", :class => "btn btn-default" %>
 					</div>
 
 					<% end %>

@@ -6,13 +6,14 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-default navbar-fixed-top">
+      <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #a8bf93;">
         <div class="container-fluid">
-
 
             <% if admin_signed_in? %>
               <nav class="navbar-header">
@@ -20,7 +21,7 @@
                   <%= image_tag 'logo.png', size: '200x90' %>
                 <% end %>
               </nav>
-              <nav class="navbar-right" style="margin: 30px 30px 0 0;">
+              <nav class="navbar-right" style="margin: 15px 10px 0 0;">
               <ul class="nav navbar-nav mr-auto">
                 <li>
                   <%=link_to "商品一覧",admins_products_path %>
@@ -92,7 +93,7 @@
             </nav>
             <% end %>
 
-            <form class="form-inline" style="float: right; margin-top: 25px;">
+            <form class="form-inline" style="float: right; margin: 25px 20px 0 0;">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
@@ -102,8 +103,26 @@
       </nav>
     </header>
 
-    <div style="margin-top: 100px"></div>
+    <div style="margin-top: 90px"></div>
 
     <%= yield %>
+
+    <div style="margin-bottom: 100px"></div>
+
+    <footer id="footer" style="height: 60px; background-color: #663333;">
+      <div class="container-fluid text-center copyrights">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="social">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+          <p style="color: #FFF;">&copy; 2020 NAGANOCAKE. Designed by モンブラン食べ隊2020</p>
+        </div>
+      </div>
+    </footer>
+
   </body>
 </html>
