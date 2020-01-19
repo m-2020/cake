@@ -14,6 +14,7 @@
         </tr>
       </thead>
       <tbody>
+        <% sum = 0 %>
         <% @cart_products.each do |cart_product| %>
           <tr>
             <td><%= attachment_image_tag cart_product.product, :image, :fill, 50, 50 %></td>
@@ -26,18 +27,38 @@
               <%= cart_price.floor.to_s(:delimited) %>
             </td>
           </tr>
+          <% sub_total = cart_product.product.price * cart_product.quantity %>
+          <% sum=sum+sub_total %>
         <% end %>
       </tbody>
     </table>
 <!-- ここまでカート一覧表示index部分 -->
 <%= form_for(@order, url:orders_path, method: :post) do |f| %>
   <p>支払い方法</p>
-    <%= @order.payment_str %>
+    <%= @order.payment %>
 	<p>お届け先</p>
     <%= @order.post_code %>
     <%= @order.address %>
     <%= @order.name %>
 
+  <table>
+    <thead>
+      <tr>
+        <th>送料</th>
+        <th>商品合計</th>
+        <th>請求金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= number_to_currency(800, :precision => 0) %></td>
+        <td><%= number_to_currency(sum*1.1, :precision => 0) %></td>
+        <td><%= number_to_currency(sum*1.1+800, :precision => 0) %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <% @order.billing_amount = sum*1.1+800 %>
 
 <!-- submitを実行すると、url:orders_pathのPOSTメソッドへ飛ぶ部分 -->
 
@@ -47,7 +68,7 @@
     <%= f.hidden_field :postage, value: 800 %>
     <%= f.hidden_field :billing_amount, value: @order.billing_amount %>
     <%= f.hidden_field :payment, value: @order.payment %>
-    <%= f.hidden_field :sending_status, value: @order.sending_status %>
+    <%= f.hidden_field :sending_status, value: "入金待ち" %>
     <%= f.hidden_field :name, value: @order.name %>
 
 
