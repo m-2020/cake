@@ -1,8 +1,9 @@
 <div class="container">
 	<div class="row">
+		<div style="padding-top: 30px;"></div>
 		<div class="col-md-2">
 			<!-- ここからジャンル検索リンク一覧部分 -->
-			<h2>ジャンル検索</h2>
+			<h3>ジャンル検索</h3>
 
 			<% @genres.each do |genre| %>
 				<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
@@ -12,8 +13,10 @@
 
 		<div class="col-md-10">
 			<!-- ここから商品一覧部分 -->
-			<h3>商品一覧</h3>
+			<h2>商品一覧</h2>
 				<div class="row">
+
+    			<div style="padding-top: 30px;"></div>
 
 					<p style="padding-left: 20px;">
 						(<% if params[:genre_id] %>
@@ -28,7 +31,7 @@
 						<div class="col-sm-4" style="padding-bottom: 50px;">
 
 						<%= link_to product_path(product.id) do %>
-							<%= attachment_image_tag product, :image, :fill, 200, 180 %>
+							<%= attachment_image_tag product, :image, :fill, 200, 180, :class => "img-rounded" %>
 						<% end %>
 
 					    </p>
