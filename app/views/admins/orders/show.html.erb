@@ -16,8 +16,10 @@
 				<td><%= @order.payment %></td>
 			</tr>
 			<tr>
+				<%=form_for(@order) do |f|  %>
 				<th>注文ステータス</th>
 				<td><%= @order.sending_status %></td>
+				<% end %>
 			</tr>
 		</table>
 

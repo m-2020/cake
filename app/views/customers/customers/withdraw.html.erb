@@ -7,7 +7,7 @@
 
 		<tr>
 			<th><%=link_to "退会しない", customers_path(current_customer) %></th>
-			<th><%=link_to "退会する", change_path, method: :patch %></th>
+			<th><%=link_to "退会する", customer_registration_path, method: :delete, data: { confirm: '本当に退会しますか?'} %></th>
 
 		</tr>
 

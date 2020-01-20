@@ -18,7 +18,9 @@
     <div class="row">
         <div style="padding-top: 30px;"></div>
         <div class="col-md-2">
+            <%= flash[:destroyed] %>
             <!-- ここからジャンル検索リンク一覧部分 -->
+
             <h3>ジャンル検索</h3>
 
             <% @genres.each do |genre| %>
