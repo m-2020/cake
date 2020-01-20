@@ -13,13 +13,9 @@ class Customers::OrdersController < ApplicationController
 		# @customer_address = @customer.address
 		@cart_products = current_customer.cart_products
 		@order = current_customer.orders.new(order_params)
+
 		@select_button = params[:select_button]
 
-		# order_productsを追加したい
-		# @order_products = current_customer.order_products.new(order_products_params)
-		# @order_product.product_id = current_customer.cart_product.product_id
-		# @order_product.quantity = current_customer.cart_product.quantity
-		# @order_product.price = Product.find_by(prace: params[:prace])
 		if params[:select_button] == "customer_address"
 			@order.address = current_customer.address
 			@order.post_code = current_customer.post_code
@@ -71,6 +67,11 @@ class Customers::OrdersController < ApplicationController
 
 	def index
 		@orders = Order.all
+	end
+
+	def show
+		@order = Order.find(params[:id])
+		@order_products = OrderProduct.all
 	end
 
 	private

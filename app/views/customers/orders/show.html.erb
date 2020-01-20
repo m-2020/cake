@@ -1,0 +1,66 @@
+<h1>注文履歴詳細</h1>
+
+<h2>注文情報</h2>
+<table>
+	<thead>
+		<tr>
+			<th>注文日</th>
+			<th>配送先</th>
+			<th>支払方法</th>
+			<th>ステータス</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= @order.created_at %></td>
+			<td><%= @order.address %></td>
+			<!-- 支払方法が表示されない、、、 -->
+			<td><%= @order.payment %></td>
+			<td><%= @order.sending_status %></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>請求情報</h2>
+<table>
+    <thead>
+      <tr>
+        <th>送料</th>
+        <th>商品合計</th>
+        <th>請求金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= number_to_currency(800) %></td>
+        <!-- あとで考える -->
+        <td></td>
+        <td><%= @order.billing_amount %>円</td>
+      </tr>
+    </tbody>
+</table>
+
+<h2>注文内容</h2>
+<table>
+	<thead>
+		<tr>
+			<th>商品</th>
+			<th>単価（税込）</th>
+			<th>個数</th>
+			<th>小計</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @order_products.each do |order_product| %>
+			<tr>
+				<!-- プロダクトネームが出ない -->
+				<td><%= order_product.order.name %></td>
+				<!-- あとで考える -->
+				<td></td>
+				<td><%= order_product.quantity %></td>
+				<!-- あとで考える -->
+				<td></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
