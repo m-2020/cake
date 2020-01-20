@@ -1,8 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
+            <%= flash[:destroyed] %>
             <!-- ここからジャンル検索リンク一覧部分 -->
-            <h2>ジャンル検索</h2>
+            <h2>ジャンル検索...</h2>
 
             <% @genres.each do |genre| %>
             	<%= link_to genre.name ,"/products?genre_id=#{genre.id}" %><br>
