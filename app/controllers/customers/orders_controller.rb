@@ -13,6 +13,8 @@ class Customers::OrdersController < ApplicationController
 		# @customer_address = @customer.address
 		@cart_products = current_customer.cart_products
 		@order = current_customer.orders.new(order_params)
+		@select_button = params[:select_button]
+
 		# order_productsを追加したい
 		# @order_products = current_customer.order_products.new(order_products_params)
 		# @order_product.product_id = current_customer.cart_product.product_id
@@ -30,7 +32,7 @@ class Customers::OrdersController < ApplicationController
 			@order.address = @select_address.address
 			@order.post_code = @select_address.post_code
 			@order.name = @select_address.name
-			# binding.pry
+
 		end
 	end
 
@@ -48,9 +50,19 @@ class Customers::OrdersController < ApplicationController
 			@product.price = product.product.price
 			@product.save
 		end
-
+		if params[:select_button] == "new_address"
+			# アドレス新規登録
+			@address = Address.new
+			@address.customer_id = current_customer.id
+			@address.post_code = @order.post_code
+			@address.address = @order.address
+			@address.name = @order.name
+			@address.save
+		end
 		# @order_product = current_customer.order_products.new(order_products_params)
 		# @order_product.save
+		current_customer.cart_products.destroy_all
+
 		redirect_to orders_thanks_path
 	end
 
