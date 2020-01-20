@@ -73,18 +73,18 @@ ActiveRecord::Schema.define(version: 2020_01_15_043702) do
     t.integer "product_id"
     t.integer "quantity"
     t.integer "price"
-    t.integer "cook_status"
+    t.integer "cooking_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
-    t.integer "post_code"
+    t.string "post_code"
     t.string "address"
     t.integer "postage"
     t.integer "billing_amount"
-    t.boolean "payment"
+    t.integer "payment"
     t.integer "sending_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
