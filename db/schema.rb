@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_043702) do
+ActiveRecord::Schema.define(version: 2020_01_15_060723) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2020_01_15_043702) do
   end
 
   create_table "cart_products", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "product_id"
     t.integer "quantity"
@@ -73,22 +81,23 @@ ActiveRecord::Schema.define(version: 2020_01_15_043702) do
     t.integer "product_id"
     t.integer "quantity"
     t.integer "price"
-    t.integer "cooking_status", default: 0
+    t.integer "cook_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
-    t.string "post_code"
+    t.integer "post_code"
     t.string "address"
     t.integer "postage"
     t.integer "billing_amount"
-    t.integer "payment"
+    t.boolean "payment"
     t.integer "sending_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "address_id"
   end
 
   create_table "products", force: :cascade do |t|

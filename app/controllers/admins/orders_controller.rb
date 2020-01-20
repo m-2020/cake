@@ -10,6 +10,7 @@ class Admins::OrdersController < ApplicationController
 	end
 
 	def show
+		@order_products = OrderProduct.all
 		@order = Order.find(params[:id])
 	end
 
