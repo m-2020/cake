@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 			admins_orders_top_path
 		elsif customer_signed_in?
 			# カスタマーのトップができたら変える
-			products_path
+			root_path
 		end
 	end
 

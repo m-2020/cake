@@ -5,19 +5,19 @@
 		<table>
 			<tr>
 				<th>購入者</th>
-				<td>内容</td>
+				<td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
 			</tr>
 			<tr>
 				<th>配送先</th>
-				<td>内容</td>
+				<td><%= @order.address %></td>
 			</tr>
 			<tr>
 				<th>支払方法</th>
-				<td>内容</td>
+				<td><%= @order.payment %></td>
 			</tr>
 			<tr>
 				<th>注文ステータス</th>
-				<td>内容</td>
+				<td><%= @order.sending_status %></td>
 			</tr>
 		</table>
 
@@ -32,14 +32,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @orders.each do |order| %>
+			<% sum = 0 %>
+			<% @order.order_products.each do |order_product| %>
 			<tr>
-				<td><%= order.product.name %></td>
-				<td><%= order.order_product.price %></td>
-				<td><%= order.order_product.quantity %></td>
+				<td><%=  %></td>
+				<td><%= order_product.price %></td>
+				<td><%= order_product.quantity %></td>
 				<td>price*quantity</td>
-				<td><%= order.order_product.cook_status %></td>
+				<td><%= order_product.cook_status %></td>
 			</tr>
+				<% sub_total = order_product.price * cart_product.quantity %>
+		           	<% sum=sum+sub_total %>
 			<% end %>
 		</tbody>
 		</table>
@@ -47,17 +50,29 @@
 		<table>
 			<tr>
 				<th>商品合計</th>
-				<td>内容</td>
+				<td><%= number_to_currency(sum*1.1, :precision => 0) %></td>
 			</tr>
 			<tr>
 				<th>送料</th>
-				<td>内容</td>
+				<td><%= number_to_currency(@order.postage, :precision => 0) %></td>
 			</tr>
 			<tr>
 				<th>請求金額合計</th>
-				<td>内容</td>
+				<td><%= number_to_currency(@order.billing_amount, :precision => 0) %></td>
 			</tr>
 		</table>
 
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
