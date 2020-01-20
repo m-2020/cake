@@ -37,7 +37,7 @@
 					<!-- submitを実行すると、url:cart_productのPATCHメソッドへ飛ぶ -->
 					<%= form_for(cart_product, url:cart_product_path(cart_product.id), method: :patch) do |cart_product| %>
 			            <td><%= cart_product.number_field :quantity, in: 1..100 %></td>
-			            <td><%= cart_product.submit "変更", :class => "btn btn-default" %></td>
+			            <td><%= cart_product.submit "変更" %></td>
 			        <% end %>
 
 		            <td>
@@ -59,13 +59,13 @@
 
 		<div style="margin-bottom: 50px"></div>
 
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<botton type="botton" class="btn btn-default"><%= link_to '買い物を続ける', root_path %></botton>
 		</div>
 
-		<div class="col-md-1">
+<!-- 		<div class="col-md-1">
 			<botton type="botton" class="btn btn-default"><%= link_to '再計算', cart_products_path %></botton>
-		</div>
+		</div> -->
 
 		<!-- ここから合計金額表示部分 -->
 		<div class="col-md-3">

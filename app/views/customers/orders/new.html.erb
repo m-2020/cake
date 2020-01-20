@@ -26,14 +26,11 @@
 		  <p>宛名</p>
 		  	<%= f.text_field :name %>
 
-		  	<%= f.hidden_field :customer_id, value: @order.customer_id %>
-		  	<%= f.hidden_field :address, value: @order.address %>
+		  	<%= f.hidden_field :customer_id, value: current_customer.id %>
 		  	<%= f.hidden_field :postage, value: 800 %>
 		  	<%= f.hidden_field :billing_amount, value: @order.billing_amount %>
 
 		  	<%= f.hidden_field :sending_status, value: @order.sending_status %>
-		  	<%= f.hidden_field :name, value: @order.name %>
-
 
 		  	<%= f.submit '確認画面へ進む' %>
 

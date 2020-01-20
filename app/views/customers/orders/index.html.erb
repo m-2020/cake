@@ -3,7 +3,14 @@
 	<h3>商品一覧</h3>
 
 		<% @orders.each do |order| %>
+			<%= order.created_at %>
+			<%= order.post_code %>
 			<%= order.address %>
+			<%= order.name %>
+
+			<%= order.billing_amount %>
+			<%= order.sending_status %>
+			<p>注文詳細</p>
 		<% end %>
 
 			<!-- ここまで商品一覧部分 -->
