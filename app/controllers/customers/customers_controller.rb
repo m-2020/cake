@@ -21,11 +21,6 @@ def update
 
 end
 
-def change
-	current_customer.update(entry_status: false)
-	redirect_to root_path
-
-end
 
 def withdraw
 
