@@ -7,7 +7,7 @@ class CartProduct < ApplicationRecord
 	 presence: true
 
 	def tax_price
-		self.product.price * 1.1
+		self.product.price * 1.08
 	end
 
 

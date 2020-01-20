@@ -19,11 +19,11 @@
           <tr>
             <td><%= attachment_image_tag cart_product.product, :image, :fill, 50, 50 %></td>
             <td><%= cart_product.product.name %></td>
-            <td><% price = cart_product.product.price*1.1 %>
+            <td><% price = cart_product.product.price*1.08 %>
               <%= price.floor.to_s(:delimited) %>
             </td>
             <td><%= cart_product.quantity %></td>
-            <td><% cart_price = cart_product.product.price*cart_product.quantity*1.1 %>
+            <td><% cart_price = cart_product.product.price*cart_product.quantity*1.08 %>
               <%= cart_price.floor.to_s(:delimited) %>
             </td>
           </tr>
@@ -52,13 +52,13 @@
     <tbody>
       <tr>
         <td><%= number_to_currency(800, :precision => 0) %></td>
-        <td><%= number_to_currency(su<m*1.1, :precision => 0) %></td>
-        <td><%= number_to_currency(sum*1.1+800, :precision => 0) %></td>
+        <td><%= number_to_currency(sum*1.08, :precision => 0) %></td>
+        <td><%= number_to_currency(sum*1.08+800, :precision => 0) %></td>
       </tr>
     </tbody>
   </table>
 
-  <% @order.billing_amount = sum*1.1+800 %>
+  <% @order.billing_amount = sum*1.08+800 %>
 
 <!-- submitを実行すると、url:orders_pathのPOSTメソッドへ飛ぶ部分 -->
 
@@ -70,7 +70,7 @@
     <%= f.hidden_field :payment, value: @order.payment %>
     <%= f.hidden_field :sending_status, value: "入金待ち" %>
     <%= f.hidden_field :name, value: @order.name %>
-
+    <%= hidden_field_tag :select_button, @select_button %>
 
 
   <%= f.submit '購入を確定する' %>
