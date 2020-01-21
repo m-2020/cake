@@ -1,17 +1,44 @@
-<div class="col-md-10">
-			<!-- ここから商品一覧部分 -->
-	<h3>商品一覧</h3>
-
-		<% @orders.each do |order| %>
-			<%= order.created_at %>
-			<%= order.post_code %>
-			<%= order.address %>
-			<%= order.name %>
-
-			<%= order.billing_amount %>
-			<%= order.sending_status %>
-			<p>注文詳細</p>
-		<% end %>
-
-			<!-- ここまで商品一覧部分 -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+		<!-- ここから商品一覧部分 -->
+			<h3>注文履歴一覧</h3>
+		        <table class="table table-striped">
+			        <thead>
+			            <tr>
+				            <th>注文日</th>
+				            <th>配送先</th>
+				            <th>注文商品</th>
+				            <th>支払金額</th>
+				            <th>ステータス</th>
+				            <th>注文詳細</th>
+				            <th colspan="8"></th>
+			            </tr>
+			        </thead>
+			        <tbody>
+		            	<% @orders.each do |order| %>
+				            <tr>
+				                <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+				                <td><%= order.post_code %><br>
+				                <%= order.address %><br>
+				                <%= order.name %></td>
+				                <td>
+				                	<% order.order_products.each do |order_product|  %>
+				                		<%= order_product.product.name %><br>
+									<% end %>
+				                </td>
+				                <td><%= number_to_currency(order.billing_amount, :precision => 0) %></td>
+				                <td><%= order.sending_status %></td>
+				                <td>
+				                	<botton type="botton" class="btn btn-default">
+				                		<%= link_to "表示する", order_path(order.id) %>
+				                	</botton>
+				                </td>
+				            </tr>
+		            	<% end %>
+		          	</tbody>
+		        </table>
+		<!-- ここまで商品一覧部分 -->
+		</div>
+	</div>
 </div>

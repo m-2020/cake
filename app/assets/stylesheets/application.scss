@@ -13,10 +13,23 @@
  *= require_tree .
  *= require_self
  */
- 
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+
+.navbar{
+	background-color: #a8bf93;
+}
+
+.navbar-right{
+	margin: 30px 30px 0 0;
+}
+
+.form-inline{
+	float: right; margin: 25px 20px 0 0;
+}
 
 ul{
 	list-style: none;
@@ -26,4 +39,23 @@ ul{
 
 li{
 	margin-right: 20px ;
+}
+
+body , html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+footer{
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #663333;
+}
+
+#wrapper{
+    padding: 0;
+    margin: 0;
+	min-height: 81vh !important;
 }
