@@ -16,10 +16,14 @@
 				<td><%= @order.payment %></td>
 			</tr>
 			<tr>
-				<%=form_for(@order) do |f|  %>
 				<th>注文ステータス</th>
-				<td><%= @order.sending_status %></td>
+				<td>
+				<%= form_for(@order, url:admins_order_path(@order.id), method: :patch) do |order| %>
+
+					<%= order.select :sending_status, Order.sending_statuses.map { |k, v| [k, k] } %>
+					<%= order.submit "更新" %>
 				<% end %>
+				</td>
 			</tr>
 		</table>
 
@@ -37,13 +41,18 @@
 			<% sum = 0 %>
 			<% @order.order_products.each do |order_product| %>
 			<tr>
-				<td><%=  %></td>
-				<td><%= order_product.price %></td>
+				<td><%= order_product.product.name %></td>
+				<td><%= number_to_currency(order_product.price, :precision => 0) %></td>
 				<td><%= order_product.quantity %></td>
-				<td>price*quantity</td>
-				<td><%= order_product.cook_status %></td>
+				<td><%= number_to_currency(order_product.price*order_product.quantity, :precision => 0) %></td>
+				<td>
+				<%= form_for(order_product, url:hoge_path(order_product.id), method: :patch) do |f| %>
+					<%= f.select :cooking_status, OrderProduct.cooking_statuses.map { |k, v| [k, k] } %>
+					<%= f.submit "更新" %>
+				<% end %>
+				</td>
 			</tr>
-				<% sub_total = order_product.price * cart_product.quantity %>
+				<% sub_total = order_product.price * order_product.quantity %>
 		           	<% sum=sum+sub_total %>
 			<% end %>
 		</tbody>

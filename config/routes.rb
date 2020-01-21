@@ -11,6 +11,8 @@ devise_for :customers, controllers: {
   registrations: 'customers/registrations'
 }
 
+# 以下railsガイドでまとめて記述する方法を調べる！
+
 root 'customers/products#top'
 
 patch '/customers/change' => 'customers/customers#change', as: "change"
@@ -21,10 +23,11 @@ delete '/cart_produsts/' => 'customers/cart_products#destroy_all'
 get '/orders/thanks' => 'customers/orders#thanks'
 get '/orders/judgement' => 'customers/orders#judgement'
 
+patch '/admins/orders/product_update/:order_product_id' => 'admins/orders#product_update', as:"hoge"
+
 get '/admins/orders/top' => 'admins/orders#top'
 get '/customers/myedit' => 'customers/customers#edit'
 patch '/customers/update' => 'customers/customers#update'
-
 
 namespace :admins do
 	resources :customers,only: [:index, :show, :edit, :update]
