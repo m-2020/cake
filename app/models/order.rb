@@ -12,4 +12,8 @@ class Order < ApplicationRecord
 		'〒' + self.post_code + '/' + self.address + '/' + self.last_name + ' ' + self.last_name
 	end
 
+	def total_quantity
+		self.order_products.sum(:quantity)
+	end
+
 end
