@@ -9,10 +9,8 @@
 			<br><label><%= f.radio_button :payment, Order.payments.keys[1] , {}%>銀行振込</label>
 		<h3>お届け先</h3>
 			<label><%= radio_button_tag :select_button, "customer_address" ,{:checked => true} %>ご自身の住所</label>
-				<p><nobr>〒</nobr><%= @customer.post_code %>
-				<%= @customer.address %></p>
-				<p><%= @customer.last_name %>
-				<%= @customer.first_name %></p>
+				<p><nobr>〒</nobr><%= @customer.post_code %><%= @customer.address %></p>
+				<p><%= @customer.last_name %><%= @customer.first_name %></p>
 			<br><label><%= radio_button_tag :select_button, "addresses" ,{} %>登録先の住所から選択</label>
 
 				<p><%= select_tag :select_address, options_for_select(@select_address_form) %></p>

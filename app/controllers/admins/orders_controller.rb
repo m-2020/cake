@@ -25,15 +25,30 @@ class Admins::OrdersController < ApplicationController
 				product.update(cooking_status: "製作待ち" )
 			end
 			redirect_to admins_order_path(@order.id)
-		elsif 
-        redirect_to admins_order_path(@order.id)
+		else
+        	redirect_to admins_order_path(@order.id)
 		end
 	end
 
 	def product_update
 		@order_product = OrderProduct.find(params[:order_product_id])
 		@order_product.update(order_product_params)
-		redirect_to admins_order_path(@order_product.order_id)
+
+		if @order_product.cooking_status == "製作中"
+			@order_product.order.update(sending_status: "製作中")
+			redirect_to admins_order_path(@order_product.order_id)
+		elsif @order_product.cooking_status == "製作完了"
+			@order = Order.find(@order_product.order_id)
+			# 全て製作完了かを確認するのではなく、一つでも製作完了でない場合はという逆のeach文
+			@order.order_products.each do |order_product|
+				if order_product.cooking_status != "製作完了"
+					redirect_to admins_order_path(@order_product.order_id)
+					return
+				end
+			end
+			@order.update(sending_status: "発送準備中")
+			redirect_to admins_order_path(@order_product.order_id)
+		end
 	end
 
 	private
