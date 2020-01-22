@@ -29,6 +29,8 @@ get '/admins/orders/top' => 'admins/orders#top'
 get '/customers/myedit' => 'customers/customers#edit'
 patch '/customers/update' => 'customers/customers#update'
 
+get '/customers/about' => 'customers/customers#about', as: "about"
+
 namespace :admins do
 	resources :customers,only: [:index, :show, :edit, :update]
 	resources :products,only: [:index, :new, :create, :show, :edit, :update]
